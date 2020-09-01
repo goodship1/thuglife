@@ -1,14 +1,20 @@
-from setuptools import setup
+
+from  setuptools import setup
 
 setup(
-        name = "thuglife",
-        version = '0.1',
-        py_modules = ['thuglife'],
-        install_requires= ["click",'opencv'],
-        entry_points = ''' [console_scripts]
-                          thuglife = thuglife:cli'''
-                          ,
-                          )
+        name = 'thuglife',
+        version = '0.3',
+        py_modules=['Thuglife'],
+        intstall_requires = [
+            'click',
+            'opencv'
+            ],
+        entry_points = '''
+                [console_scripts]
+                Thuglife = Thuglife:cli
+                ''',
 
-                          
+                )
+
+  
                           
