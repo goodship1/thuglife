@@ -27,7 +27,10 @@ def imageFilecheck(image):
     else:
         return False
 
-
+@cli.command()
+def view():
+    imageOpen = Image.open('out.png')
+    imageOpen.show('out.png')
 
 def loadThuglifeMask():
    '''loads the file directory of the
