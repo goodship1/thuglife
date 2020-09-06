@@ -12,7 +12,5 @@ Command line interface to create Thuglife meme out of an image using open GL
 
 ## Commands
 
- - thuglife mask /your/image/location
-
-## Output
-![alt-text](https://raw.githubusercontent.com/goodship1/thuglife/master/out.png?token=ACNNLTHS2MA2KDSCK7RB4YC7J3KQ2) 
+ - Thuglife mask /your/image/location memefilename
+ - Thuglife view memefilename.png
