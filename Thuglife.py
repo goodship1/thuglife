@@ -1,6 +1,7 @@
 import click
 from PIL import Image
 import cv2
+import os,shutil
 
 @click.group()
 def cli():
@@ -8,12 +9,12 @@ def cli():
 
 @cli.command()
 @click.argument('image')
-
-def mask(image):
+@click.argument('filename')
+def mask(image,filename):
     '''adds thuglife mask to image'''
     checkImage = imageFilecheck(image)
     if checkImage == True:
-        addingMask(image)
+        addingMask(image,filename)
     else:
         click.echo("Must enter valid file type")
 
@@ -27,10 +28,17 @@ def imageFilecheck(image):
     else:
         return False
 
+
+
 @cli.command()
-def view():
-    imageOpen = Image.open('out.png')
-    imageOpen.show('out.png')
+@click.argument('filename')
+def view(filename):
+    '''takes the file name to view image eg me.png'''
+    image = Image.open(filename)
+    image.show(filename)
+    
+
+
 
 def loadThuglifeMask():
    '''loads the file directory of the
@@ -39,9 +47,11 @@ def loadThuglifeMask():
    return fileDirectory
 
 
-def addingMask(image):
+def addingMask(image,filename):
     '''adds thug life mask to image'''
     startingImage = Image.open(image)
+    fileformat = '.png'
+    filename = str(filename)+fileformat
     readImage = cv2.imread(image)
     maskPath = loadThuglifeMask()
     gray = cv2.cvtColor(readImage,cv2.COLOR_BGR2GRAY)
@@ -55,6 +65,10 @@ def addingMask(image):
         mask = mask.resize((w,h),Image.ANTIALIAS)
         offset = (x,y)
         startingImage.paste(mask,offset,mask=mask)
-    startingImage.save('out.png')
+    startingImage.save(filename)
+
+
+
+
 
 
